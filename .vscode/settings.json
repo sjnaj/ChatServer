@@ -1,0 +1,10 @@
+{
+    "cmake.sourceDirectory": "/home/fengsc/ChatServer",
+    "files.associations": {
+        "*.json": "jsonc",
+        "*.cu": "cpp",
+        "*.inc": "cpp",
+        "functional": "cpp",
+        "*.ipp": "cpp"
+    }
+}

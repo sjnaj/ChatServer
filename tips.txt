@@ -1,0 +1,33 @@
+ using /etc/mysql/mysql.cnf to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+
+ sudo mysql;use mysql;ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
+ flush privileges;
+
+
+ps aux | grep mysql 
+
+ sudo netstat -tanp//t:tcp p:program a:all n:numeric ip
+
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      23103/mysqld        
+
+报mysql.infoschema相关错，修改密码
+DROP USER 'mysql.infoschema'@'localhost';
+CREATE USER 'mysql.infoschema'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT ON *.* TO `mysql.infoschema`@`localhost`;
+
+stop和status失败，修改debian-sys-maint密码，先修改/etc/mysql/debian.cnf
+drop user 'debian-sys-maint'@'localhost'
+create user 'debian-sys-maint'@'localhost' identified by 'YES'
+grant all privileges on *.* to 'debian-sys-maint'@'localhost' with grant option;
+flush privileges;
+
+系统配置：/etc/mysql/mysql.conf.d/mysqld.cnf,可以被my.cnf覆盖
+
+CREATE USER 'developer'@'%' IDENTIFIED BY 'dev_password';
+GRANT ALL ON *.* TO 'developer'@'%';
+
+//远程访问,需要注释掉bindingaddress
+
+show variables like '%skip_name_resolve%';
+设置skip_name_resolve=ON 避免DNS解析超时，可以使用远程ip连接
+
